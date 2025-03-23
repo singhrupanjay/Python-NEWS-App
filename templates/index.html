@@ -1,0 +1,60 @@
+{% extends "base.html" %} 
+
+{% block body %}
+
+{# NAVBAR #}
+
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">INSTA-NEWS</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" aria-current="page" href="/?query=latest">Home</a>
+        <a class="nav-link active" aria-current="page" href="/?query=technology">Technology</a>
+        <a class="nav-link active" aria-current="page" href="/?query=world">World</a>
+        <a class="nav-link active" aria-current="page" href="/?query=business">Business</a>
+        <a class="nav-link active" aria-current="page" href="/?query=video games">Games</a>
+        <a class="nav-link active" aria-current="page" href="/?query=movies">Movies</a>
+        <a class="nav-link active" aria-current="page" href="/?query=travel">Travel</a>
+        <a class="nav-link active" aria-current="page" href="/?query=fashion">Fashion</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+{# NAVBAR #}
+
+<div class="container">
+  <h1 class="my-4 text-center">Welcome to Instant News</h1>
+
+{# Search #}
+  <form class="d-flex mb-4 method="get" action="/"" role="search">
+    <input class="form-control mr-5" type="text" name="query" value="{{query}}" placeholder="Search">
+    <button id="search-btn" class="btn btn-primary" type="submit">Search</button>
+  </form>
+{# Search #}
+
+  <div class="row">
+    {% for article in articles %}
+    
+    <div class="col-md-6">
+      <div class="card mb-4 news-article">
+        {% if article.urlToImage %}
+          <img src="{{article.urlToImage}}" alt="picture" class="card-img-top">
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title"><a href="{{article.url}}" target="_blank">{{article.title}}</a></h5>
+          <p class="card-text">{{article.description}}</p>
+        </div>
+    
+      </div>
+    </div>
+
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}
